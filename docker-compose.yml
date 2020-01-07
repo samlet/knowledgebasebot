@@ -1,0 +1,49 @@
+version: '3.0'
+
+services:
+  rasa:
+    image: rasa/rasa:latest-full
+    networks: ['rasa-network']
+    ports:
+    - "5005:5005"
+    volumes:
+    - "./:/app/"
+    command:
+    - run
+
+  action_server:
+    build:
+      context: "."
+    image: samlet/knowledgebasebot_actions
+    networks: ['rasa-network']
+    ports:
+    - "5055:5055"
+    volumes:
+    - "./actions:/app/actions"
+    - "./knowledgebase:/app/knowledgebase"
+    depends_on:
+      - mysql
+
+  duckling:
+    image: rasa/duckling:latest
+    networks: ['rasa-network']
+    ports:
+    - "8000:8000"
+
+  mysql:
+    # image: mysql:5.7
+    image: mysql:8
+    ports:
+    - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: "%"
+    volumes:
+    - ./docker/data:/docker-entrypoint-initdb.d
+    - db-data:/var/lib/mysql
+
+
+networks: {rasa-network: {}}
+volumes:
+  db-data:
+
