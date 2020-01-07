@@ -1,5 +1,7 @@
 # Knowledge Base Bot
 
+Dockerized knowledgebasebot, with mysql datasource.
+
 ```bash
 $ docker-compose build  # build actions docker
 $ docker-compose up mysql
