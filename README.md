@@ -4,8 +4,9 @@ Dockerized knowledgebasebot, with mysql datasource.
 
 ```bash
 $ docker-compose build  # build actions docker
-$ docker-compose up mysql
-$ docker-compose up action_server
+# $ docker-compose up mysql
+# $ docker-compose up action_server
+$ run # alias run='docker-compose up'
 
 # recreate tables and fill seeds
 $ python -m knowledgebase.data_source fill_data_seeds True  

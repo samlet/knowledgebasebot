@@ -2,13 +2,16 @@ import sqlalchemy
 from sqlalchemy import Table, Column, Integer, String, Boolean, MetaData, ForeignKey
 from sqlalchemy import create_engine
 from pprint import pprint
+import os
 
 # engine = create_engine('sqlite:///:memory:', echo=True)
 # engine = create_engine("mysql://dev:dev@samlet/bot?charset=utf8mb4", echo=True)
 # engine = create_engine("mysql://dev:dev@samlet/bot?charset=utf8mb4&&use_unicode=True", echo=False)
 
 # preqs: pip install PyMySQL
-engine = create_engine("mysql+pymysql://dev:dev@samlet/bot?charset=utf8mb4&&use_unicode=True", echo=False)
+# engine = create_engine("mysql+pymysql://dev:dev@samlet/bot?charset=utf8mb4&&use_unicode=True", echo=False)
+db_host=os.getenv('db_host') or 'samlet'
+engine = create_engine(f"mysql+pymysql://dev:dev@{db_host}/bot?charset=utf8mb4&&use_unicode=True", echo=False)
 # engine = create_engine("mysql+pymysql://root:root@samlet/bot?charset=utf8mb4&&use_unicode=True", echo=False)
 
 metadata = MetaData()

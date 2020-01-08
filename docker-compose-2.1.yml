@@ -1,4 +1,4 @@
-version: '3.0'
+version: "2.1"
 
 services:
   rasa:
@@ -8,8 +8,7 @@ services:
     - "5005:5005"
     volumes:
     - "./:/app/"
-    command:
-    - run
+    command: run
 
   actions:
     build:
@@ -22,8 +21,9 @@ services:
     - "./actions:/app/actions"
     - "./knowledgebase:/app/knowledgebase"
     depends_on:
-      - mysql
-    # restart: on-failure
+      mysql:
+        condition: service_healthy
+    restart: on-failure
     environment:
       db_host: mysql
 
