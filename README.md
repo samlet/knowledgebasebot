@@ -1,5 +1,8 @@
 # Knowledge Base Bot
+## video tuts
+* [scratch-bot & knowledgebase-bot](https://www.bilibili.com/video/av82535367?p=2) 
 
+## start
 Dockerized knowledgebasebot, with mysql datasource.
 
 ```bash
