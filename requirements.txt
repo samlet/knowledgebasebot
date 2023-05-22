@@ -1,4 +1,4 @@
 ## Setup py requirements
-requests==2.22.0
+requests==2.31.0
 rasa-sdk~=1.6.0
 PyMySQL~=0.9.3
